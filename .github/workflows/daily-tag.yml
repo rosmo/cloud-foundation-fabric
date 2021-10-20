@@ -1,0 +1,31 @@
+name: |
+  Create daily release tags
+
+on:
+  schedule:
+    - cron:  '0 2 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  daily-tag:
+    name: "Create tag on master if there was activity in last 24 hours"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: "Check changes and tag"
+        run: |
+          CHANGES=$(git log --since="1 day ago" --name-only --pretty=format: )
+
+          if [ "x$CHANGES" != "x" ] ; then
+            TAG="daily-$(date +%Y.%m.%d)""
+            git tag $TAG
+            git push origin $TAG
+
+            echo "Created new tag: $TAG"
+          else
+            echo "No changes in last 24 hours"
+          fi
+          
