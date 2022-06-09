@@ -24,6 +24,12 @@ terraform {
       version = ">= 4.17.0"
     }
   }
+  provider_meta "google" {
+    module_name = "google-pso-tool/cloud-foundation-fabric/endpoints/v22.0.0.0"
+  }
+  provider_meta "google-beta" {
+    module_name = "google-pso-tool/cloud-foundation-fabric/endpoints/v22.0.0.0"
+  }
 }
 
 
