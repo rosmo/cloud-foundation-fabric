@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: "Validate input"
-        run: |<<<<<<< HEAD
+        run: |
           [[ "${{ github.event.inputs.changelog }}" != "true" ]] && { echo "You didn't update the changelog!" ; exit 1; }
           [[ -n "${{ github.event.inputs.version }}" ]] || { echo "Version not specified!" ; exit 1; }
           [[ "${{ github.event.inputs.version }}" != v* ]] && { echo "Version does not start with v!" ; exit 1; }
