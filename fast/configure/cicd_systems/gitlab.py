@@ -131,35 +131,35 @@ class FastGitlabConfigurator(FastCicdSystemConfigurator):
         if config["cicd"] == "gitlab-ce":
             config["bootstrap_identity_providers"]["gitlab"][
                 "custom_settings"] = {
-                    "issuer_uri": self.config["gitlab_url"],
-                    "allowed_audiences": [self.config["gitlab_url"]]
+                    "issuer_uri": config["gitlab_url"],
+                    "allowed_audiences": [config["gitlab_url"]]
                 }
 
         config["bootstrap_repositories"] = {
             "bootstrap": {
                 "branch": "main",
                 "identity_provider": "gitlab",
-                "name": "bootstrap",
+                "name": f"{config['gitlab_group']}/bootstrap",
                 "type": "gitlab"
             },
             "cicd": {
                 "branch": "main",
                 "identity_provider": "gitlab",
-                "name": "cicd",
+                "name": f"{config['gitlab_group']}/cicd",
                 "type": "gitlab"
             },
             "resman": {
                 "branch": "main",
                 "identity_provider": "gitlab",
-                "name": "resman",
+                "name": f"{config['gitlab_group']}/resman",
                 "type": "gitlab"
             },
         }
 
         cicd_config["gitlab"] = {
             "url":
-                "https://gitlab.com" if config["cicd"] == "gitlab-com" else
-                self.config["gitlab_url"],
+                "https://gitlab.com"
+                if config["cicd"] == "gitlab-com" else config["gitlab_url"],
             "project_visibility":
                 "private",
             "shared_runners_enabled":

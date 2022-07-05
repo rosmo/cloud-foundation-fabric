@@ -103,23 +103,23 @@ class FastGithubConfigurator(FastCicdSystemConfigurator):
             }
         }
 
-        self.config["bootstrap_repositories"] = {
+        config["bootstrap_repositories"] = {
             "bootstrap": {
                 "branch": "main",
                 "identity_provider": "github",
-                "name": "bootstrap",
+                "name": f"{config['github_organization']}/bootstrap",
                 "type": "github"
             },
             "cicd": {
                 "branch": "main",
                 "identity_provider": "github",
-                "name": "cicd",
+                "name": f"{config['github_organization']}/cicd",
                 "type": "github"
             },
             "resman": {
                 "branch": "main",
                 "identity_provider": "github",
-                "name": "resman",
+                "name": f"{config['github_organization']}/resman",
                 "type": "github"
             },
         }
