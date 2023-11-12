@@ -143,6 +143,7 @@ resource "google_compute_instance" "default" {
   name                      = var.name
   hostname                  = var.hostname
   description               = var.description
+  desired_status            = var.desired_status
   tags                      = var.tags
   machine_type              = var.instance_type
   min_cpu_platform          = var.min_cpu_platform
